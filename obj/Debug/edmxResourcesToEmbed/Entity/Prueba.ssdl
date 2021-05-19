@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DiaHabil">
+    <Key>
+      <PropertyRef Name="id_habil" />
+    </Key>
+    <Property Name="id_habil" Type="int" Nullable="false" />
+    <Property Name="id_negocio" Type="int" />
+    <Property Name="dia" Type="tinyint" />
+    <Property Name="id_horario" Type="int" />
+    <Property Name="habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Horario">
+    <Key>
+      <PropertyRef Name="id_horario" />
+    </Key>
+    <Property Name="id_horario" Type="int" Nullable="false" />
+    <Property Name="horarioDesde" Type="datetime" />
+    <Property Name="horarioHasta" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Negocio">
+    <Key>
+      <PropertyRef Name="id_negocio" />
+    </Key>
+    <Property Name="id_negocio" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_DiaHabil_Horario">
+    <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
+    <End Role="DiaHabil" Type="Self.DiaHabil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="id_horario" />
+      </Principal>
+      <Dependent Role="DiaHabil">
+        <PropertyRef Name="id_horario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiaHabil_Negocio">
+    <End Role="Negocio" Type="Self.Negocio" Multiplicity="0..1" />
+    <End Role="DiaHabil" Type="Self.DiaHabil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_negocio" />
+      </Principal>
+      <Dependent Role="DiaHabil">
+        <PropertyRef Name="id_negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PruebaModelStoreContainer">
+    <EntitySet Name="DiaHabil" EntityType="Self.DiaHabil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Negocio" EntityType="Self.Negocio" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DiaHabil_Horario" Association="Self.FK_DiaHabil_Horario">
+      <End Role="Horario" EntitySet="Horario" />
+      <End Role="DiaHabil" EntitySet="DiaHabil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiaHabil_Negocio" Association="Self.FK_DiaHabil_Negocio">
+      <End Role="Negocio" EntitySet="Negocio" />
+      <End Role="DiaHabil" EntitySet="DiaHabil" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

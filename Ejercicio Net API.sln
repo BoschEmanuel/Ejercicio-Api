@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejercicio Net API", "Ejercicio Net API.csproj", "{B6A6AF51-9B0D-4BE9-8D33-A11BFA54D28B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6A6AF51-9B0D-4BE9-8D33-A11BFA54D28B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A6AF51-9B0D-4BE9-8D33-A11BFA54D28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A6AF51-9B0D-4BE9-8D33-A11BFA54D28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A6AF51-9B0D-4BE9-8D33-A11BFA54D28B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A44B700-F635-4762-ABFA-4ED26AA563FD}
+	EndGlobalSection
+EndGlobal

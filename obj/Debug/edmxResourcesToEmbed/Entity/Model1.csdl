@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PruebaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DiaHabils" EntityType="PruebaModel.DiaHabil" />
+    <EntitySet Name="Horarios" EntityType="PruebaModel.Horario" />
+    <EntitySet Name="Negocios" EntityType="PruebaModel.Negocio" />
+    <AssociationSet Name="FK_DiaHabil_Horario" Association="PruebaModel.FK_DiaHabil_Horario">
+      <End Role="Horario" EntitySet="Horarios" />
+      <End Role="DiaHabil" EntitySet="DiaHabils" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiaHabil_Negocio" Association="PruebaModel.FK_DiaHabil_Negocio">
+      <End Role="Negocio" EntitySet="Negocios" />
+      <End Role="DiaHabil" EntitySet="DiaHabils" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DiaHabil">
+    <Key>
+      <PropertyRef Name="id_habil" />
+    </Key>
+    <Property Name="id_habil" Type="Int32" Nullable="false" />
+    <Property Name="id_negocio" Type="Int32" />
+    <Property Name="dia" Type="Byte" />
+    <Property Name="id_horario" Type="Int32" />
+    <Property Name="habilitado" Type="Boolean" />
+    <NavigationProperty Name="Horario" Relationship="PruebaModel.FK_DiaHabil_Horario" FromRole="DiaHabil" ToRole="Horario" />
+    <NavigationProperty Name="Negocio" Relationship="PruebaModel.FK_DiaHabil_Negocio" FromRole="DiaHabil" ToRole="Negocio" />
+  </EntityType>
+  <EntityType Name="Horario">
+    <Key>
+      <PropertyRef Name="id_horario" />
+    </Key>
+    <Property Name="id_horario" Type="Int32" Nullable="false" />
+    <Property Name="horarioDesde" Type="DateTime" Precision="3" />
+    <Property Name="horarioHasta" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DiaHabils" Relationship="PruebaModel.FK_DiaHabil_Horario" FromRole="Horario" ToRole="DiaHabil" />
+  </EntityType>
+  <EntityType Name="Negocio">
+    <Key>
+      <PropertyRef Name="id_negocio" />
+    </Key>
+    <Property Name="id_negocio" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DiaHabils" Relationship="PruebaModel.FK_DiaHabil_Negocio" FromRole="Negocio" ToRole="DiaHabil" />
+  </EntityType>
+  <Association Name="FK_DiaHabil_Horario">
+    <End Type="PruebaModel.Horario" Role="Horario" Multiplicity="0..1" />
+    <End Type="PruebaModel.DiaHabil" Role="DiaHabil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="id_horario" />
+      </Principal>
+      <Dependent Role="DiaHabil">
+        <PropertyRef Name="id_horario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiaHabil_Negocio">
+    <End Type="PruebaModel.Negocio" Role="Negocio" Multiplicity="0..1" />
+    <End Type="PruebaModel.DiaHabil" Role="DiaHabil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negocio">
+        <PropertyRef Name="id_negocio" />
+      </Principal>
+      <Dependent Role="DiaHabil">
+        <PropertyRef Name="id_negocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
